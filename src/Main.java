@@ -1,37 +1,47 @@
+import java.util.ArrayList;
+import java.util.Comparator;
+
 public class Main {
     public static void main(String[] args) {
-        Zoo shymzoo = new Zoo("zoopark Shymkent", "Shymkent", 54, "Baidibek bi, 113/a");
-        Zookeeper askhat = new Zookeeper(1, "Askhat", "Breadwinner", 18, "Male");
-        Animal aidos = new Animal("Aidos", 17, 1700, "Hippopotamus", "Male");
-        Animal archi = new Animal("Archi", 18, 2000, "Hippopotamus", "Male");
 
-        System.out.println("     About Zoo");
+        Zoo shymzoo = new Zoo("Zoo Shymkent", "Shymkent", 54, "Baidibek bi, 113/A");
+        Zookeeper askhat = new Zookeeper(1, "Askhat", "Breadwinner", 18, "Male");
+        Animal aidos = new Hippopotamus("Aidos", 17, 1700, "Male");
+        Animal archi = new Hippopotamus("Archi", 20, 2000, "Male");
+
+        System.out.println("=== ABOUT ZOO ===");
         shymzoo.info();
 
-        System.out.println("     Employees");
+        System.out.println("\n=== EMPLOYEES ===");
         askhat.info();
 
-        System.out.println("     Animals");
-        aidos.info();
-        archi.info();
+        ArrayList<Animal> animals = new ArrayList<>();
+        animals.add(aidos);
+        animals.add(archi);
 
-        System.out.println();
+        System.out.println("\n=== ANIMALS ===");
+        System.out.println(aidos);
+        aidos.makeSound();
+        System.out.println(archi);
+        archi.makeSound();
 
-        System.out.println("     Comparison");
-        if(aidos.getAge() > archi.getAge()) {
-            System.out.println(aidos.getName() + "(" + aidos.getAge() + ") is older than " + archi.getName() + "(" + archi.getAge() + ")");
-        } else if (aidos.getAge() < archi.getAge()) {
-            System.out.println(archi.getName() + "(" + archi.getAge() + ") is older than " + aidos.getName() + "(" + aidos.getAge() + ")");
-        } else {
-            System.out.println("Both animals have the same age");
+        System.out.println("\n=== FILTER: weight > 1800 ===");
+        for (Animal a : animals) {
+            if (a.getWeight() > 1800) {
+                System.out.println(a.getName() + " is heavier than 1800 kg");
+            }
+        }
+        for (Animal a : animals) {
+            if (a.getAge() >= 18) {
+                System.out.println(a.getName() + " is over 18 years old");
+            }
         }
 
-        if(aidos.getWeight() > archi.getWeight()) {
-            System.out.println(aidos.getName() + "(" + aidos.getWeight() + " kg) is heavier than " + archi.getName() + "(" + archi.getWeight() + " kg)");
-        } else if (aidos.getWeight() < archi.getWeight()) {
-            System.out.println(archi.getName() + "(" + archi.getWeight() + " kg) is heavier than " + aidos.getName() + "(" + aidos.getWeight() + " kg)");
-        } else {
-            System.out.println("Both animals have the same weight");
+        animals.sort(Comparator.comparingInt(Animal::getAge));
+
+        System.out.println("\n=== SORTED BY AGE ===");
+        for (Animal a : animals) {
+            System.out.println(a);
         }
     }
 }

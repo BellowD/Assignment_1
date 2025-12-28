@@ -1,9 +1,9 @@
 public class Animal {
-    private String name;
-    private int age;
-    private int weight;
-    private String species;
-    private String gender;
+    protected String name;
+    protected int age;
+    protected int weight;
+    protected String species;
+    protected String gender;
 
     public Animal(String name, int age, int weight, String species, String gender) {
         this.name = name;
@@ -33,38 +33,36 @@ public class Animal {
         return gender;
     }
 
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
     public void setAge(int age) {
         if (age > 0) {
             this.age = age;
         }
     }
-
     public void setWeight(int weight) {
         if (weight > 0) {
             this.weight = weight;
         }
     }
 
-    public void setSpecies(String species) {
-        this.species = species;
+    public void makeSound() {
+        System.out.println("Animal makes a sound");
     }
 
-    public void setGender(String gender) {
-        this.gender = gender;
+    @Override
+    public String toString() {
+        return name + " (" + species + ", " + age + " y.o.)";
     }
 
-    public void info() {
-        System.out.println(
-                "Animal name: " + name + "\n" +
-                        "Age: " + age + "\n" +
-                        "Gender: " + gender + "\n" +
-                        "Weight in KG: " + weight + "\n" +
-                        "Species: " + species
-        );
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) return true;
+        if (!(obj instanceof Animal)) return false;
+        Animal other = (Animal) obj;
+        return name.equals(other.name);
+    }
+
+    @Override
+    public int hashCode() {
+        return name.hashCode();
     }
 }

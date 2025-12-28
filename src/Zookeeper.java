@@ -1,16 +1,11 @@
-public class Zookeeper {
+public class Zookeeper extends Person {
     private int employeeId;
-    private String name;
     private String specialty;
-    private int age;
-    private String gender;
 
-    public Zookeeper(int employeeId, String name, String specialty, int age, String gender){
+    public Zookeeper(int employeeId, String name, String specialty, int age, String gender) {
+        super(name, age, gender);
         this.employeeId = employeeId;
-        this.name = name;
         this.specialty = specialty;
-        this.age = age;
-        this.gender = gender;
     }
 
     public int getEmployeeId() {
@@ -53,7 +48,7 @@ public class Zookeeper {
                         "Name: " + name + "\n" +
                         "Gender: " + gender + "\n" +
                         "Age: " + age + "\n" +
-                        "Speciality: " + specialty
+                        "Specialty: " + specialty
         );
     }
 }
